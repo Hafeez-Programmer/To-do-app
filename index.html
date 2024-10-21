@@ -14,6 +14,13 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
   }
+  html, body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
   h1 {
     text-align: center;
     font-weight: 600;
@@ -23,25 +30,29 @@
     padding: 10px 5px;
   }
 </style>
-<body>
-  <h1 id="main-heading">To-do App</h1>
-
+<body class="bg-dark-subtle">
+  
   <div class="container-fluid">
-    <div class="row gap-3 justify-content-center">
-      <div class="col-2">
-        <input class="w-100" id="todo-input" type="text" placeholder="Enter todo here">
+    <div class="row justify-content-center">
+      
+      <div class="col-6 col-md-4 bg-white border rounded shadow-lg p-3">
+        <h1 id="main-heading">To-do App</h1>
+        <div class="row justify-content-center">
+          <div class="col-5">
+            <input class="w-100" id="todo-input" type="text" placeholder="Enter todo here">
+          </div>
+          <div class="col-4">
+            <input class="w-100" id="todo-date" type="date">
+          </div>
+          <div class="col-3">
+            <button id="add-btn" class="btn btn-outline-success rounded p-2">Add <i class="bi bi-plus-circle"></i></button>
+          </div>
+        </div>
+        <div class="todo-container mt-4">
       </div>
-      <div class="col-2">
-        <input class="w-100" id="todo-date" type="date">
       </div>
-      <div class="col-2">
-        <button class="btn btn-success p-2 w-50" onclick="addTodo();">Add <i class="bi bi-plus-circle"></i></button>
       </div>
     </div>
-  </div>
-
-  <div class="todo-container mt-4">
-  </div>
 
   <script src="script.js"></script>
 </body>

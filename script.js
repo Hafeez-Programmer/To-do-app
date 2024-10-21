@@ -1,11 +1,15 @@
 let todoStr = localStorage.getItem('todo_data');
 let todolist = todoStr ? JSON.parse(todoStr) : [];
 
+let inputElement = document.querySelector('#todo-input');
+let dateElement = document.querySelector('#todo-date');
+let addBtnElement = document.querySelector('#add-btn');
+
+addBtnElement.addEventListener("click", addTodo);
+
 displayTodo();
 
 function addTodo() {
-  let inputElement = document.querySelector('#todo-input');
-  let dateElement = document.querySelector('#todo-date');
 
   let inputData = inputElement.value;
   let dateData = dateElement.value;
@@ -31,15 +35,15 @@ function displayTodo() {
 
   for (let i = 0; i < todolist.length; i++) {
     innerHTML += ` 
-      <div class="row gap-3 justify-content-center">
-        <div class="col-2 p-3">
+      <div class="row justify-content-center m-2">
+        <div class="col-5">
           ${todolist[i].todoInput}
         </div>
-        <div class="col-2 p-3">
+        <div class="col-4">
           ${todolist[i].todoDate}
         </div>
-        <div class="col-2">
-          <button class="btn btn-danger p-2 w-50" onclick="
+        <div class="col-3">
+          <button class="btn btn-outline-danger p-2" onclick="
           todolist.splice(${i}, 1);
           displayTodo();
           ">Delete <i class="bi bi-dash-circle"></i></button>
