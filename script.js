@@ -5,6 +5,8 @@ let inputElement = document.querySelector('#todo-input');
 let dateElement = document.querySelector('#todo-date');
 let addBtnElement = document.querySelector('#add-btn');
 
+let containerElement = document.querySelector('.todo-container');
+
 addBtnElement.addEventListener("click", addTodo);
 
 displayTodo();
@@ -20,14 +22,13 @@ function addTodo() {
     inputElement.value = '';
     dateElement.value = '';
   } else {
-    return alert('Please Fill the Inputs!');
+    return displayError();
   } 
   
   displayTodo();
 }
 
 function displayTodo() {
-  let containerElement = document.querySelector('.todo-container');
   
   localStorage.setItem('todo_data', JSON.stringify(todolist));
   
@@ -55,4 +56,13 @@ function displayTodo() {
   containerElement.innerHTML = innerHTML;
 }
 
+function displayError() {
+  containerElement.innerHTML += `
+  <div class="alert alert-danger d-flex align-items-center">
+    <div>
+      ⚠️ Please fill the inputs
+    </div>
+  </div>
+  `
+}
 
