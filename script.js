@@ -5,9 +5,9 @@ let inputElement = document.querySelector('#todo-input');
 let dateElement = document.querySelector('#todo-date');
 let addBtnElement = document.querySelector('#add-btn');
 
-let containerElement = document.querySelector('.todo-container');
-
 addBtnElement.addEventListener("click", addTodo);
+
+let containerElement = document.querySelector('.todo-container');
 
 displayTodo();
 
@@ -57,7 +57,7 @@ function displayTodo() {
 }
 
 function displayError() {
-  containerElement.innerHTML += `
+  containerElement.innerHTML = `
   <div class="alert alert-danger d-flex align-items-center">
     <div>
       ⚠️ Please fill the inputs

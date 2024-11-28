@@ -24,3 +24,8 @@ h1 {
   font-size: 15px;
   padding: 10px 5px;
 }
+
+.todo-container {
+  max-height: 60vh !important;
+  overflow-y: auto;
+}
