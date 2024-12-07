@@ -58,10 +58,11 @@ function displayTodo() {
 
 function displayError() {
   containerElement.innerHTML = `
-  <div class="alert alert-danger d-flex align-items-center">
+  <div class="alert alert-danger d-flex align-items justify-content-between">
     <div>
       ⚠️ Please fill the inputs
     </div>
+    <button type="button" class="btn-close" onclick="displayTodo();"></button
   </div>
   `
 }
