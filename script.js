@@ -62,7 +62,7 @@ function displayError() {
     <div>
       ⚠️ Please fill the inputs
     </div>
-    <button type="button" class="btn-close" onclick="displayTodo();"></button
+    <button type="button" class="btn-close" onclick="displayTodo();"></button>
   </div>
   `
 }
