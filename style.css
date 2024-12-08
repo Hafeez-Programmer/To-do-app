@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: "Poppins", serif;;
 }
+
 html, body {
   height: 100%;
   width: 100%;
@@ -13,7 +14,10 @@ html, body {
   align-items: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(background.png);
+  background: linear-gradient(-45deg,#2c6cbc,#71c3f7);
+  background-size: 300% 300%;
+  animation: gradient-animation 10s ease infinite;  
+  /* background-image: url(background.png); */
 }
 
 h1 {
@@ -28,4 +32,16 @@ h1 {
 .todo-container {
   max-height: 60vh !important;
   overflow-y: auto;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
