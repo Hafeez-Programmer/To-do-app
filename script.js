@@ -37,17 +37,25 @@ function displayTodo() {
   for (let i = 0; i < todolist.length; i++) {
     innerHTML += ` 
       <div class="row justify-content-center m-2">
-        <div class="col-5">
+        <div id="todoText" class="col-4 col-md-5">
           ${todolist[i].todoInput}
         </div>
-        <div class="col-4">
+        <div class="col-4 col-md-5">
           ${todolist[i].todoDate}
         </div>
-        <div class="col-3">
-          <button class="btn btn-outline-danger p-2" onclick="
+
+        <div class="col-2 col-md-1">
+          <button class="btn btn-outline-primary" onclick="
+          updateTodo(${i});
+          displayTodo();
+          "><i class="bi bi-pencil-square"></i></button>
+        </div>
+        
+        <div class="col-2 col-md-1">
+          <button class="btn btn-outline-danger" onclick="
           todolist.splice(${i}, 1);
           displayTodo();
-          ">Delete <i class="bi bi-dash-circle"></i></button>
+          "><i class="bi bi-trash"></i></button>
         </div>
       </div> 
     `
@@ -65,5 +73,17 @@ function displayError() {
     <button type="button" class="btn-close" onclick="displayTodo();"></button>
   </div>
   `
+}
+
+function updateTodo(index) {
+  const updateTodoText = prompt("enter new todoText");
+  const updateTodoDate = prompt("enter new todoDate");
+
+  todolist[index].todoInput = updateTodoText;
+  todolist[index].todoDate = updateTodoDate;
+
+  localStorage.setItem('todo_data', JSON.stringify(todolist));
+
+  alert("todo has been updated successfully✅");
 }
 
