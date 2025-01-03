@@ -11,6 +11,7 @@ html, body {
   height: 100%;
   width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -44,4 +45,17 @@ h1 {
   100% {
     background-position: 0% 50%;
   }
+}
+
+#flexCheckDefault:hover {
+  cursor: pointer;
+}
+
+#updateModal {
+  display: none;
+}
+
+.blurred {
+  filter: blur(8px); /* Adjust the blur intensity here */
+  pointer-events: none; /* Prevent interaction with the blurred content */
 }

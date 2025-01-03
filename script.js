@@ -1,20 +1,33 @@
 let todoStr = localStorage.getItem('todo_data');
 let todolist = todoStr ? JSON.parse(todoStr) : [];
 
+// todo input elements.
+let todoContentELement = document.querySelector('#todo-content');
 let inputElement = document.querySelector('#todo-input');
 let dateElement = document.querySelector('#todo-date');
 let addBtnElement = document.querySelector('#add-btn');
 
 addBtnElement.addEventListener("click", addTodo);
 
+// todos container element.
 let containerElement = document.querySelector('.todo-container');
+
+// modal container element.
+let updateModalElement = document.querySelector('#updateModal');
+let modalTextELement = document.querySelector('#modalText');
+let modalDateELement = document.querySelector('#modalDate');
+let modalCloseBtnElement = document.querySelector('#modalCloseBtn');
+let modalSaveBtnElement = document.querySelector('#modalSaveBtn');
+let modalErrorELement = document.querySelector('#modalError');
 
 displayTodo();
 
 function addTodo() {
 
   let inputData = inputElement.value;
-  let dateData = dateElement.value;
+
+  let dateValue = new Date(dateElement.value);
+  let dateData = dateValue.toDateString();
 
   if (inputData != '' && dateData != '') {  
     todolist.push({todoInput: inputData, todoDate: dateData});
@@ -22,7 +35,7 @@ function addTodo() {
     inputElement.value = '';
     dateElement.value = '';
   } else {
-    return displayError();
+    return containerElement.innerHTML = displayError();
   } 
   
   displayTodo();
@@ -48,14 +61,14 @@ function displayTodo() {
           <button class="btn btn-outline-primary" onclick="
           updateTodo(${i});
           displayTodo();
-          "><i class="bi bi-pencil-square"></i></button>
+          ">✏️</button>
         </div>
         
         <div class="col-2 col-md-1">
           <button class="btn btn-outline-danger" onclick="
           todolist.splice(${i}, 1);
           displayTodo();
-          "><i class="bi bi-trash"></i></button>
+          ">🗑️</button>
         </div>
       </div> 
     `
@@ -65,8 +78,7 @@ function displayTodo() {
 }
 
 function displayError() {
-  containerElement.innerHTML = `
-  <div class="alert alert-danger d-flex align-items justify-content-between">
+  return ` <div class="alert alert-danger d-flex align-items justify-content-between">
     <div>
       ⚠️ Please fill the inputs
     </div>
@@ -76,14 +88,29 @@ function displayError() {
 }
 
 function updateTodo(index) {
-  const updateTodoText = prompt("enter new todoText");
-  const updateTodoDate = prompt("enter new todoDate");
+  updateModalElement.style.display = 'inline';
+  todoContentELement.classList.add("blurred");
 
-  todolist[index].todoInput = updateTodoText;
-  todolist[index].todoDate = updateTodoDate;
+  
+  modalSaveBtnElement.addEventListener("click", () => {
+    const updateTodoText = modalTextELement.value;
+    const modalDate = new Date (modalDateELement.value);
+    const updateTodoDate = modalDate.toDateString();
 
-  localStorage.setItem('todo_data', JSON.stringify(todolist));
-
-  alert("todo has been updated successfully✅");
+      todolist[index].todoInput = updateTodoText;
+      todolist[index].todoDate = updateTodoDate;
+      
+      localStorage.setItem('todo_data', JSON.stringify(todolist));
+      
+      updateModalElement.style.display = 'none';
+      todoContentELement.classList.remove("blurred");
+      displayTodo();
+    
+  })
+  
+  modalCloseBtnElement.addEventListener("click", () => {
+    updateModalElement.style.display = 'none';
+    todoContentELement.classList.remove("blurred");
+  })
 }
 
